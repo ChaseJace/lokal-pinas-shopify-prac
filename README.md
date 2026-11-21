@@ -1,6 +1,6 @@
 # Lokal Pilipinas: a Shopify theme for Filipino products
 
-A custom Shopify Online Store 2.0 theme for selling Filipino-made products. The design draws on the Philippine flag (blue, red, yellow and the eight-rayed sun), the woven *banig* mat pattern, and the three stars that stand for Luzon, Visayas and Mindanao.
+A custom Shopify Online Store 2.0 theme for selling Filipino-made products. The design draws on the Philippine flag (blue, red, yellow and the eight-rayed sun), the woven *banig* mat pattern, and the three stars that stand for Luzon, Visayas and Mindanao. (Practice theme build; code is shared for portfolio review while the storefront itself is not published live.)
 
 > Status: version 1.0.0, a starter theme. It was written without access to a live Shopify store, so run through the checks in `docs/SETUP-GUIDE.md` before launch.
 ## Live Preview & Screenshots
