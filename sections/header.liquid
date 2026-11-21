@@ -1,0 +1,29 @@
+<header class="site-header">
+  <div class="banig" aria-hidden="true"></div>
+  <div class="wrap bar">
+    <a class="brand" href="{{ routes.root_url }}">
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: 400 | image_tag: width: 180, alt: shop.name }}
+      {%- else -%}
+        <span class="logo-sun">{% render 'sun' %}</span><span class="brand-name">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+    <nav class="nav" aria-label="Main">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+    <div class="tools">
+      <a href="{{ routes.search_url }}">Search</a>
+      <a href="{{ routes.cart_url }}" class="cart-link">Cart <b>{{ cart.item_count }}</b></a>
+    </div>
+  </div>
+</header>
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

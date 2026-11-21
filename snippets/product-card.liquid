@@ -1,0 +1,21 @@
+{%- comment -%} Usage: {% render 'product-card', product: product %} {%- endcomment -%}
+{%- assign origin = product.metafields.custom.origin.value -%}
+<a class="card" href="{{ product.url }}">
+  <div class="media">
+    {%- if product.featured_image -%}
+      {{ product.featured_image | image_url: width: 640 | image_tag: loading: 'lazy', widths: '320, 480, 640', sizes: '(min-width: 900px) 25vw, 50vw', alt: product.featured_image.alt | escape }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+    {%- endif -%}
+    {%- if origin != blank -%}<span class="origin-tag">{{ origin }}</span>{%- endif -%}
+    {%- unless product.available -%}<span class="soldout">Sold out</span>{%- endunless -%}
+  </div>
+  <div class="info">
+    <h3>{{ product.title }}</h3>
+    {%- if product.vendor != blank -%}<p class="maker">Gawa ng {{ product.vendor }}</p>{%- endif -%}
+    <p class="price">
+      {%- if product.compare_at_price > product.price -%}<s>{{ product.compare_at_price | money }}</s> {% endif -%}
+      {%- if product.price_varies -%}From {% endif -%}{{ product.price | money }}
+    </p>
+  </div>
+</a>

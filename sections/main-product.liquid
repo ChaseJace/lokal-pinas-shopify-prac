@@ -1,0 +1,55 @@
+{%- assign origin = product.metafields.custom.origin.value -%}
+{%- assign current = product.selected_or_first_available_variant -%}
+<section class="section wrap product">
+  <div class="gallery">
+    <div class="gallery-main">
+      {%- if product.featured_image -%}
+        {{ product.featured_image | image_url: width: 1200 | image_tag: id: 'gallery-main-img', loading: 'eager', widths: '600, 900, 1200', sizes: '(min-width: 900px) 50vw, 100vw', alt: product.featured_image.alt | escape }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+      {%- endif -%}
+      {%- if origin != blank -%}<span class="origin-tag">{{ origin }}</span>{%- endif -%}
+    </div>
+    {%- if product.images.size > 1 -%}
+      <div class="thumbs">
+        {%- for image in product.images -%}
+          <button type="button" data-full="{{ image | image_url: width: 1200 }}" aria-label="Show image {{ forloop.index }}">
+            {{ image | image_url: width: 160 | image_tag: loading: 'lazy', alt: image.alt | escape }}
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="buy-box">
+    <h1 class="h2">{{ product.title }}</h1>
+    {%- if product.vendor != blank -%}<p class="maker">Gawa ng {{ product.vendor }}{% if origin != blank %}, {{ origin }}{% endif %}</p>{%- endif -%}
+    <p class="price big">
+      {%- if current.compare_at_price > current.price -%}<s>{{ current.compare_at_price | money }}</s> {% endif -%}
+      {%- if product.price_varies -%}From {% endif -%}{{ product.price | money }}
+    </p>
+
+    {%- form 'product', product, class: 'buy' -%}
+      {%- unless product.has_only_default_variant -%}
+        <label for="variant-select">{{ product.options | join: ' / ' }}</label>
+        <select id="variant-select" name="id">
+          {%- for variant in product.variants -%}
+            <option value="{{ variant.id }}"{% if variant == current %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title }} · {{ variant.price | money }}{% unless variant.available %} (sold out){% endunless %}</option>
+          {%- endfor -%}
+        </select>
+      {%- else -%}
+        <input type="hidden" name="id" value="{{ current.id }}">
+      {%- endunless -%}
+      <label for="qty">Dami / Quantity</label>
+      <input id="qty" type="number" name="quantity" value="1" min="1" inputmode="numeric">
+      <button class="btn" type="submit"{% unless product.available %} disabled{% endunless %}>{% if product.available %}Ilagay sa cart / Add to cart{% else %}Sold out{% endif %}</button>
+    {%- endform -%}
+
+    <p class="note">Libreng padala sa orders na {{ settings.free_shipping_threshold | times: 100 | money_without_trailing_zeros }} pataas.</p>
+    <div class="rte">{{ product.description }}</div>
+  </div>
+</section>
+<script type="application/ld+json">{{ product | structured_data }}</script>
+{% schema %}
+{ "name": "Product page", "settings": [] }
+{% endschema %}

@@ -1,0 +1,5 @@
+# Files Shopify CLI should not upload
+docs/
+README.md
+.gitignore
+.shopifyignore

@@ -1,0 +1,42 @@
+<section class="section wrap">
+  <div class="woven">
+    <div class="woven-in">
+      <h2>{{ section.settings.heading | escape }}</h2>
+      <p class="lead">{{ section.settings.text | escape }}</p>
+      <div class="pledges">
+        {%- for block in section.blocks -%}
+          <div {{ block.shopify_attributes }}><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.text | escape }}</p></div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Maker story",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Hinabi ng kamay, hindi ng makina" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Every item here comes from a named farm, weaver or workshop. Your payment goes straight to the people who made it." }
+  ],
+  "blocks": [
+    {
+      "type": "pledge",
+      "name": "Pledge",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Diretso sa gumawa" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Each listing names its maker and province." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Maker story",
+      "blocks": [
+        { "type": "pledge", "settings": { "title": "Diretso sa gumawa", "text": "Each listing names its maker and province." } },
+        { "type": "pledge", "settings": { "title": "Maingat ang pagbalot", "text": "Food is sealed and dated. Weaves are wrapped in paper." } },
+        { "type": "pledge", "settings": { "title": "Madaling palitan", "text": "Damaged on arrival? Send a photo within 7 days." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

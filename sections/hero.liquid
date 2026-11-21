@@ -1,0 +1,29 @@
+<section class="hero">
+  {% render 'sun' %}
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <h1>{{ section.settings.heading | escape }}</h1>
+      <p class="lead">{{ section.settings.subheading | escape }}</p>
+      {%- if section.settings.button_label != blank -%}
+        <a class="btn btn--yellow" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.image != blank -%}
+      <div class="arch">{{ section.settings.image | image_url: width: 900 | image_tag: loading: 'eager', widths: '450, 700, 900', sizes: '(min-width: 900px) 40vw, 90vw', alt: section.settings.image.alt | escape }}</div>
+    {%- endif -%}
+  </div>
+  <div class="banig" aria-hidden="true"></div>
+</section>
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Gawang Pilipino, para sa bawat tahanan." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Coffee from Batangas, cacao from Davao, weaves from Aklan. Every product names the people who made it." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Mamili na / Shop now" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "image_picker", "id": "image", "label": "Photo (shown in an arch frame, portrait works best)" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

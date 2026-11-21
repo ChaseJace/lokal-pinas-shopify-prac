@@ -1,0 +1,42 @@
+<section class="section wrap">
+  <h2>{{ section.settings.heading | escape }}</h2>
+  <div class="islands">
+    {%- for block in section.blocks -%}
+      <a class="island" href="{{ block.settings.collection.url | default: routes.all_products_collection_url }}" {{ block.shopify_attributes }}>
+        <span class="star" aria-hidden="true">★</span>
+        <h3>{{ block.settings.title | escape }}</h3>
+        <p>{{ block.settings.tagline | escape }}</p>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Island groups",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Mamili ayon sa pulo" }
+  ],
+  "blocks": [
+    {
+      "type": "island",
+      "name": "Island group",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Luzon" },
+        { "type": "text", "id": "tagline", "label": "Short description", "default": "Ilocos weaves, Bicol pili, Batangas coffee" },
+        { "type": "collection", "id": "collection", "label": "Collection" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Island groups",
+      "blocks": [
+        { "type": "island", "settings": { "title": "Luzon", "tagline": "Ilocos weaves, Bicol pili, Batangas coffee" } },
+        { "type": "island", "settings": { "title": "Visayas", "tagline": "Cebu mangoes, Aklan piña cloth, Negros sugar" } },
+        { "type": "island", "settings": { "title": "Mindanao", "tagline": "Davao cacao, T’boli weaves, Zamboanga sardines" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

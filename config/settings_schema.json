@@ -1,0 +1,36 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Lokal Pilipinas",
+    "theme_version": "1.0.0",
+    "theme_author": "Your name",
+    "theme_documentation_url": "https://github.com/YOUR-USERNAME/lokal-pilipinas-theme",
+    "theme_support_url": "https://github.com/YOUR-USERNAME/lokal-pilipinas-theme/issues"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "color", "id": "color_blue", "label": "Blue (flag blue)", "default": "#0038A8" },
+      { "type": "color", "id": "color_red", "label": "Red (flag red, buttons)", "default": "#CE1126" },
+      { "type": "color", "id": "color_yellow", "label": "Yellow (sun)", "default": "#FCD116" },
+      { "type": "color", "id": "color_paper", "label": "Page background (sampaguita white)", "default": "#FFFBF0" },
+      { "type": "color", "id": "color_ink", "label": "Text and borders (deep navy)", "default": "#0A1F4D" }
+    ]
+  },
+  {
+    "name": "Branding",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo (optional, replaces the sun and store name)" },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon (square, 64 × 64 px or larger)" },
+      { "type": "number", "id": "free_shipping_threshold", "label": "Free shipping message threshold (₱)", "info": "Display only. Set the real free shipping rule in Settings → Shipping and delivery.", "default": 1500 }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      { "type": "url", "id": "social_facebook", "label": "Facebook page URL" },
+      { "type": "url", "id": "social_instagram", "label": "Instagram URL" },
+      { "type": "url", "id": "social_tiktok", "label": "TikTok URL" }
+    ]
+  }
+]

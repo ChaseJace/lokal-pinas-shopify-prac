@@ -1,0 +1,37 @@
+<section class="section wrap">
+  <h1 class="h2">Ang iyong cart</h1>
+  {%- if cart.item_count == 0 -%}
+    <p>Wala pang laman ang cart mo. Your cart is empty.</p>
+    <a class="btn" href="{{ routes.all_products_collection_url }}">Mamili na</a>
+  {%- else -%}
+    {%- assign threshold = settings.free_shipping_threshold | times: 100 -%}
+    {%- assign left = threshold | minus: cart.total_price -%}
+    <p class="ship-note">
+      {%- if left > 0 -%}Add {{ left | money_without_trailing_zeros }} more for free shipping.{%- else -%}Libre na ang padala mo. You’ve unlocked free shipping.{%- endif -%}
+    </p>
+    <form action="{{ routes.cart_url }}" method="post" id="cart-form">
+      {%- for item in cart.items -%}
+        <div class="cart-line">
+          <a href="{{ item.url }}" class="cart-img">{%- if item.image -%}{{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: item.image.alt | escape }}{%- endif -%}</a>
+          <div>
+            <a href="{{ item.url }}"><strong>{{ item.product.title }}</strong></a>
+            {%- unless item.product.has_only_default_variant -%}<p class="small">{{ item.variant.title }}</p>{%- endunless -%}
+            <p class="small">{{ item.final_price | money }}</p>
+            <a class="small" href="{{ item.url_to_remove }}">Alisin / Remove</a>
+          </div>
+          <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" inputmode="numeric" aria-label="Quantity for {{ item.product.title | escape }}">
+          <strong class="line-total">{{ item.final_line_price | money }}</strong>
+        </div>
+      {%- endfor -%}
+      <div class="cart-foot">
+        <p class="price big">Subtotal: {{ cart.total_price | money }}</p>
+        <p class="small">Shipping and taxes are calculated at checkout.</p>
+        <button class="btn btn--ghost" type="submit" name="update">I-update ang cart</button>
+        <button class="btn" type="submit" name="checkout">Mag-checkout</button>
+      </div>
+    </form>
+  {%- endif -%}
+</section>
+{% schema %}
+{ "name": "Cart page", "settings": [] }
+{% endschema %}

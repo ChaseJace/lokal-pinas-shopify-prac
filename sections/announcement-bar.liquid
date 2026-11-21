@@ -1,0 +1,11 @@
+{%- if section.settings.text != blank -%}
+<div class="announce">{{ section.settings.text | escape }}</div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Message", "default": "Libreng padala sa orders na ₱1,500 pataas. Free shipping on orders ₱1,500 and up." }
+  ]
+}
+{% endschema %}

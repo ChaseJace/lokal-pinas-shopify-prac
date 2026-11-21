@@ -1,0 +1,10 @@
+{%- comment -%} Eight-rayed sun inspired by the Philippine flag. Colour comes from CSS currentColor. {%- endcomment -%}
+<svg class="sun" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+  <g fill="currentColor">
+    {%- for i in (0..7) -%}
+      <path d="M100 4 L109 50 L91 50 Z" transform="rotate({{ i | times: 45 }} 100 100)"/>
+      <path d="M100 22 L105 50 L95 50 Z" transform="rotate({{ i | times: 45 | plus: 22.5 }} 100 100)"/>
+    {%- endfor -%}
+    <circle cx="100" cy="100" r="42"/>
+  </g>
+</svg>

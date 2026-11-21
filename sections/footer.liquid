@@ -1,0 +1,37 @@
+<footer class="site-footer">
+  <div class="banig" aria-hidden="true"></div>
+  <div class="wrap foot-grid">
+    <div>
+      <p class="foot-brand"><span class="logo-sun">{% render 'sun' %}</span>{{ shop.name }}</p>
+      <p>{{ section.settings.about | escape }}</p>
+      <p class="social">
+        {%- if settings.social_facebook != blank -%}<a href="{{ settings.social_facebook }}" rel="noopener">Facebook</a>{%- endif -%}
+        {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" rel="noopener">Instagram</a>{%- endif -%}
+        {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" rel="noopener">TikTok</a>{%- endif -%}
+      </p>
+    </div>
+    <nav aria-label="Footer">
+      <h3>Tulong</h3>
+      <ul>
+        {%- for link in section.settings.menu.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
+      </ul>
+    </nav>
+    <div>
+      <h3>Bayad</h3>
+      <ul class="pay-icons">
+        {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag: class: 'pay-icon' }}</li>{%- endfor -%}
+      </ul>
+      <p class="small">GCash, Maya and cash on delivery appear in checkout once you set them up in Shopify.</p>
+    </div>
+  </div>
+  <p class="wrap copy">© {{ 'now' | date: '%Y' }} {{ shop.name }}. Gawa sa Pilipinas.</p>
+</footer>
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "about", "label": "About text", "default": "Mga produktong gawa ng Pilipino, diretso mula sa mga komunidad at magsasaka sa buong bansa." },
+    { "type": "link_list", "id": "menu", "label": "Footer menu", "default": "footer" }
+  ]
+}
+{% endschema %}

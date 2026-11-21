@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "hero": { "type": "hero", "settings": {} },
+    "islands": {
+      "type": "island-groups",
+      "blocks": {
+        "luzon": { "type": "island", "settings": { "title": "Luzon", "tagline": "Ilocos weaves, Bicol pili, Batangas coffee" } },
+        "visayas": { "type": "island", "settings": { "title": "Visayas", "tagline": "Cebu mangoes, Aklan piña cloth, Negros sugar" } },
+        "mindanao": { "type": "island", "settings": { "title": "Mindanao", "tagline": "Davao cacao, T’boli weaves, Zamboanga sardines" } }
+      },
+      "block_order": ["luzon", "visayas", "mindanao"],
+      "settings": {}
+    },
+    "featured": { "type": "featured-collection", "settings": {} },
+    "story": {
+      "type": "maker-story",
+      "blocks": {
+        "a": { "type": "pledge", "settings": { "title": "Diretso sa gumawa", "text": "Each listing names its maker and province." } },
+        "b": { "type": "pledge", "settings": { "title": "Maingat ang pagbalot", "text": "Food is sealed and dated. Weaves are wrapped in paper." } },
+        "c": { "type": "pledge", "settings": { "title": "Madaling palitan", "text": "Damaged on arrival? Send a photo within 7 days." } }
+      },
+      "block_order": ["a", "b", "c"],
+      "settings": {}
+    }
+  },
+  "order": ["hero", "islands", "featured", "story"]
+}

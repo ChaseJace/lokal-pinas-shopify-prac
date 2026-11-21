@@ -1,0 +1,29 @@
+{%- paginate collection.products by 12 -%}
+<section class="section wrap">
+  <div class="sec-head">
+    <div>
+      <h1 class="h2">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}<div class="rte">{{ collection.description }}</div>{%- endif -%}
+    </div>
+    <form method="get" class="sort">
+      <label for="sort_by">Ayusin / Sort</label>
+      <select id="sort_by" name="sort_by" data-autosubmit>
+        {%- for option in collection.sort_options -%}
+          <option value="{{ option.value }}"{% if collection.sort_by == option.value %} selected{% endif %}>{{ option.name }}</option>
+        {%- endfor -%}
+      </select>
+    </form>
+  </div>
+  <div class="grid">
+    {%- for product in collection.products -%}
+      {% render 'product-card', product: product %}
+    {%- else -%}
+      <p>No products here yet. Check back soon.</p>
+    {%- endfor -%}
+  </div>
+  {%- if paginate.pages > 1 -%}<div class="pagination">{{ paginate | default_pagination }}</div>{%- endif -%}
+</section>
+{%- endpaginate -%}
+{% schema %}
+{ "name": "Collection page", "settings": [] }
+{% endschema %}

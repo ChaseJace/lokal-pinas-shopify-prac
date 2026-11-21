@@ -1,0 +1,143 @@
+/* Lokal Pilipinas. Colours come from theme settings via CSS variables in layout/theme.liquid. */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-family:Gloock,Georgia,serif;font-weight:400;line-height:1.1;margin:0 0 .5em}
+h1{font-size:clamp(2.4rem,6vw,4.6rem)}
+h2,.h2{font-family:Gloock,Georgia,serif;font-weight:400;font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1.1;margin:0 0 .5em}
+h3{font-size:1.25rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:0}
+.skip:focus{left:8px;top:8px;background:var(--yellow);padding:8px 14px;z-index:100;font-weight:700}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.narrow{max-width:760px}.center{text-align:center}
+.section{padding:64px 20px}
+.lead{font-size:1.2rem;max-width:46ch}
+.small{font-size:.9rem}
+.rte>*:first-child{margin-top:0}
+
+/* Banig: woven zigzag strip */
+.banig{height:16px;background-color:var(--red);border-bottom:4px solid var(--blue);
+  background-image:
+    linear-gradient(135deg,var(--yellow) 25%,transparent 25%),
+    linear-gradient(225deg,var(--yellow) 25%,transparent 25%),
+    linear-gradient(315deg,var(--yellow) 25%,transparent 25%),
+    linear-gradient(45deg,var(--yellow) 25%,transparent 25%);
+  background-size:16px 16px;background-position:-8px 0,-8px 0,0 0,0 0}
+
+/* Buttons */
+.btn{display:inline-block;background:var(--red);color:#fff;border:2px solid var(--ink);padding:12px 24px;font:700 1rem Figtree,sans-serif;text-decoration:none;cursor:pointer;box-shadow:4px 4px 0 var(--ink)}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn--yellow{background:var(--yellow);color:var(--ink)}
+.btn--ghost{background:transparent;color:var(--ink)}
+.btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none}
+
+/* Announcement and header */
+.announce{background:var(--ink);color:var(--paper);text-align:center;font-size:.9rem;padding:8px 16px}
+.site-header{background:var(--paper);border-bottom:2px solid var(--ink)}
+.bar{display:flex;align-items:center;gap:20px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-name{font-family:Gloock,Georgia,serif;font-size:1.7rem;line-height:1}
+.logo-sun{width:34px;height:34px;color:var(--blue);display:inline-block}
+.nav{display:flex;gap:22px;flex:1;overflow-x:auto;white-space:nowrap}
+.nav a{text-decoration:none;font-weight:600;padding:4px 0;border-bottom:3px solid transparent}
+.nav a:hover,.nav a[aria-current]{border-bottom-color:var(--red)}
+.tools{display:flex;gap:18px;align-items:center;font-weight:600}
+.tools a{text-decoration:none}
+.cart-link b{background:var(--red);color:#fff;border-radius:999px;padding:1px 9px;font-size:.85rem;margin-left:4px}
+@media(max-width:700px){.nav{order:3;flex-basis:100%}.tools{margin-left:auto}}
+
+/* Hero */
+.hero{background:var(--blue);color:#fff;position:relative;overflow:hidden}
+.hero .sun{position:absolute;right:-14%;top:50%;width:min(90vw,680px);color:var(--yellow);opacity:.28;transform:translateY(-50%);animation:spin 160s linear infinite}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;padding-top:80px;padding-bottom:80px}
+.hero-grid:not(:has(.arch)){grid-template-columns:1fr}
+.hero h1{max-width:13ch;margin-bottom:.4em}
+.hero .lead{margin:0 0 28px}
+.arch{border:4px solid var(--yellow);border-radius:999px 999px 0 0;overflow:hidden;aspect-ratio:3/4;max-width:380px;justify-self:center;background:var(--ink)}
+.arch img{width:100%;height:100%;object-fit:cover}
+@keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
+@media(max-width:800px){.hero-grid{grid-template-columns:1fr;padding-top:56px;padding-bottom:56px}.hero .sun{opacity:.2}}
+@media(prefers-reduced-motion:reduce){.hero .sun{animation:none}html{scroll-behavior:auto}.btn:hover{transform:none}}
+
+/* Island groups: three stars of the flag */
+.islands{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.island{background:var(--blue);color:#fff;padding:28px 24px;text-decoration:none;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--yellow)}
+.island:hover{background:var(--ink)}
+.island .star{display:block;color:var(--yellow);font-size:2.4rem;line-height:1;margin-bottom:12px}
+.island h3{font-size:1.8rem}
+.island p{margin:0;opacity:.92}
+@media(max-width:800px){.islands{grid-template-columns:1fr}}
+
+/* Product grid and cards */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.more{font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr);gap:14px}}
+.card{display:flex;flex-direction:column;background:#fff;border:2px solid var(--ink);text-decoration:none}
+.card:hover{border-color:var(--red)}
+.media{position:relative;aspect-ratio:1;background:#f3ead2;overflow:hidden}
+.media img,.media svg{width:100%;height:100%;object-fit:cover}
+.origin-tag{position:absolute;left:0;top:12px;background:var(--red);color:#fff;font-weight:700;font-size:.8rem;padding:4px 18px 4px 10px;clip-path:polygon(0 0,100% 0,calc(100% - 9px) 50%,100% 100%,0 100%)}
+.soldout{position:absolute;right:8px;bottom:8px;background:var(--ink);color:#fff;font-size:.8rem;padding:3px 9px}
+.info{padding:14px 14px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.info h3{font-size:1.15rem;margin:0}
+.maker{margin:0;font-size:.9rem;opacity:.75}
+.price{margin:auto 0 0;font-weight:700}
+.price s{opacity:.55;font-weight:400}
+.price.big{font-size:1.5rem;margin:6px 0 18px}
+
+/* Maker story: woven frame */
+.woven{padding:10px;background-color:var(--red);background-image:
+  linear-gradient(135deg,var(--yellow) 25%,transparent 25%),linear-gradient(225deg,var(--yellow) 25%,transparent 25%),
+  linear-gradient(315deg,var(--yellow) 25%,transparent 25%),linear-gradient(45deg,var(--yellow) 25%,transparent 25%);
+  background-size:20px 20px;background-position:-10px 0,-10px 0,0 0,0 0}
+.woven-in{background:var(--paper);padding:48px 40px;border:4px solid var(--blue)}
+.pledges{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:32px}
+.pledges p{margin:0}
+@media(max-width:800px){.pledges{grid-template-columns:1fr}.woven-in{padding:32px 22px}}
+
+/* Product page */
+.product{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media(max-width:900px){.product{grid-template-columns:1fr;gap:28px}}
+.gallery-main{position:relative;border:2px solid var(--ink);background:#f3ead2;aspect-ratio:1}
+.gallery-main img,.gallery-main svg{width:100%;height:100%;object-fit:cover}
+.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:10px}
+.thumbs button{padding:0;border:2px solid var(--ink);background:none;cursor:pointer;aspect-ratio:1;overflow:hidden}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.buy{display:grid;gap:8px;max-width:420px}
+.buy label{font-weight:600;margin-top:6px}
+.buy .btn{margin-top:14px}
+select,input[type=number],input[type=search]{font:inherit;padding:11px 12px;border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:0;width:100%}
+.note{margin:18px 0;padding:10px 14px;background:var(--yellow);font-weight:600}
+
+/* Cart, search, sort, pagination */
+.cart-line{display:grid;grid-template-columns:90px 1fr 90px 110px;gap:16px;align-items:center;padding:16px 0;border-bottom:2px solid var(--ink)}
+.cart-img img{border:2px solid var(--ink);aspect-ratio:1;object-fit:cover}
+.cart-line p{margin:2px 0}
+.line-total{text-align:right}
+.cart-foot{text-align:right;padding-top:20px}
+.cart-foot .btn{margin-left:8px;margin-top:8px}
+.ship-note{background:var(--yellow);padding:10px 14px;font-weight:600}
+@media(max-width:600px){.cart-line{grid-template-columns:70px 1fr 70px}.line-total{grid-column:2/4;text-align:left}}
+.sort{display:flex;gap:10px;align-items:center}.sort select{width:auto}
+.searchbar{display:flex;gap:10px;margin:0 0 24px;max-width:560px}
+.pagination{margin-top:36px;text-align:center}
+.pagination a,.pagination span{display:inline-block;padding:6px 12px;border:2px solid var(--ink);margin:0 2px;text-decoration:none}
+.pagination .current{background:var(--ink);color:#fff}
+
+/* Footer */
+.site-footer{background:var(--ink);color:var(--paper);margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;padding-top:48px;padding-bottom:32px}
+.foot-brand{font-family:Gloock,Georgia,serif;font-size:1.6rem;display:flex;align-items:center;gap:10px;margin:0 0 10px}
+.site-footer .logo-sun{color:var(--yellow)}
+.site-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.social a{margin-right:16px}
+.pay-icons{display:flex!important;flex-wrap:wrap;gap:6px!important}
+.pay-icon{width:38px;height:24px}
+.copy{border-top:1px solid rgba(255,255,255,.25);padding-top:18px;padding-bottom:28px;font-size:.9rem}
+@media(max-width:800px){.foot-grid{grid-template-columns:1fr}}
